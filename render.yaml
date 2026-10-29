@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: recap-studio-mm
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --timeout 1800
+    plan: free
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.8-flash
+      - key: MAX_UPLOAD_MB
+        value: "1800"
